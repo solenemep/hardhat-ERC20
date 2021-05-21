@@ -7,7 +7,6 @@ contract ERC20 {
     mapping(address => uint256) private _balances;
     string private _name;
     string private _symbol;
-    uint256 private _totalSupply;
 
     event Transfer(
         address indexed sender,
@@ -15,12 +14,11 @@ contract ERC20 {
         uint256 amount
     );
 
-    constructor(address owner_, uint256 totalSupply_) {
+    constructor(address owner_, uint256 initialSupply_) {
         _name = "CoinCoin";
         _symbol = "CC";
-        _totalSupply = totalSupply_;
-        _balances[owner_] = _totalSupply;
-        emit Transfer(address(0), owner_, _totalSupply);
+        _balances[owner_] = initialSupply_;
+        emit Transfer(address(0), owner_, initialSupply_);
     }
 
     // getters
@@ -30,10 +28,6 @@ contract ERC20 {
 
     function symbol() public view returns (string memory) {
         return _symbol;
-    }
-
-    function totalSupply() public view returns (uint256) {
-        return _totalSupply;
     }
 
     function balanceOf(address account) public view returns (uint256) {

@@ -18,11 +18,8 @@ describe("ERC20", function () {
     it('Has symbol CC', async function () {
       expect(await erc20.symbol()).to.equal('CC');
     })
-    it('Has totalSupply 1 000 000', async function () {
-      expect(await erc20.totalSupply()).to.equal(1000000);
-    })
-    it('Mints totalSupply to owner', async () => {
-      expect(await erc20.balanceOf(owner.address)).to.equal(await erc20.totalSupply());
+    it('Mints initialSupply to owner', async () => {
+      expect(await erc20.balanceOf(owner.address)).to.equal(1000000);
     });
     it('Emits event Transfer on deployement', async function () {
       /*
